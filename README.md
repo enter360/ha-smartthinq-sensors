@@ -1,12 +1,14 @@
 # LG ThinQ Devices integration for HomeAssistant
 
-[![](https://img.shields.io/github/release/ollo69/ha-smartthinq-sensors/all.svg?style=for-the-badge)](https://github.com/ollo69/ha-smartthinq-sensors/releases)
+[![Latest release](https://img.shields.io/github/release/enter360/ha-smartthinq-sensors/all.svg?style=for-the-badge)](https://github.com/enter360/ha-smartthinq-sensors/releases)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
-[![](https://img.shields.io/github/license/ollo69/ha-smartthinq-sensors?style=for-the-badge)](LICENSE)
-[![](https://img.shields.io/badge/MAINTAINER-%40ollo69-red?style=for-the-badge)](https://github.com/ollo69)
-[![](https://img.shields.io/badge/COMMUNITY-FORUM-success?style=for-the-badge)](https://community.home-assistant.io)
+[![License](https://img.shields.io/github/license/enter360/ha-smartthinq-sensors?style=for-the-badge)](LICENSE)
+[![Maintainer: enter360](https://img.shields.io/badge/MAINTAINER-%40enter360-red?style=for-the-badge)](https://github.com/enter360)
+[![Community forum](https://img.shields.io/badge/COMMUNITY-FORUM-success?style=for-the-badge)](https://community.home-assistant.io)
 
 A HomeAssistant custom integration to monitor and control LG devices using ThinQ API based on [WideQ project][wideq].
+
+> **Note:** This is an actively maintained fork of [ollo69/ha-smartthinq-sensors](https://github.com/ollo69/ha-smartthinq-sensors), which is no longer maintained. New features and bug fixes will be published here.
 
 Supported devices are:
 
@@ -44,13 +46,19 @@ You can install this component in two ways: via [HACS](https://github.com/hacs/i
 
 If you have HACS, just go in the Integration Tab and search the "SmartThinQ LGE Sensors" component and install it.
 
+> If this repository is not yet available in the HACS default store, you can add it as a custom repository:
+>
+> 1. In HACS, go to **Integrations** → **⋮** (top right) → **Custom repositories**
+> 2. Add `https://github.com/enter360/ha-smartthinq-sensors` with category **Integration**
+> 3. Search and install "SmartThinQ LGE Sensors"
+
 ### Option B: Manual installation (custom_component)
 
 Prerequisite: SSH into your server.
 [Home Assistant Add-on: SSH server](https://github.com/home-assistant/hassio-addons/tree/master/ssh)
 
 1. Clone the git master branch.
-`git clone https://github.com/ollo69/ha-smartthinq-sensors.git`
+`git clone https://github.com/enter360/ha-smartthinq-sensors.git`
 2. If missing, create a `custom_components` directory where your `configuration.yaml` file resides. This is usually in the config directory of homeassistant.
 `mkdir ~/.homeassistant/custom_components`
 3. Copy the `smartthinq_sensors` directory within the `custom_components` directory of your homeassistant installation from step 2.
@@ -189,7 +197,7 @@ Note: When something doesn't apply and/or is off, it may have a `-` as its value
 
 You can substitute "dry" and "dryer" for "wet" and "washer" if you want to use with a washer, for example.
 
-- Timer Bar Card now supports this integration. If you like to show a progress bar for your washer/dryer go to https://github.com/rianadon/timer-bar-card and replace 'sensor.my_washer' with your sensor name.
+- Timer Bar Card now supports this integration. If you like to show a progress bar for your washer/dryer go to [timer-bar-card](https://github.com/rianadon/timer-bar-card) and replace 'sensor.my_washer' with your sensor name.
 
 ![image](https://user-images.githubusercontent.com/117555636/210880751-604b6779-fd9d-4c23-b0d9-1a167f42a23a.png)
 <details>
@@ -318,7 +326,7 @@ entity: 'sensor.the_dryer_dryer' # Washers work too!
 
 - Mushroom-card
 
-<img src="https://user-images.githubusercontent.com/10727862/174490941-c0148343-e31b-42fe-a856-376428ee53a5.png" width="500px"/>)
+![Mushroom card example](https://user-images.githubusercontent.com/10727862/174490941-c0148343-e31b-42fe-a856-376428ee53a5.png)
 
 <details>
   <summary>
@@ -410,20 +418,15 @@ Windows 11 enables the ability to run Android apps on most modern machines, maki
 
 For information on how to do this with Windows Subsystem for Android (WSA) on Windows 11 using mitmproxy, please see the repo [zimmra/frida-rootbypass-and-sslunpinning-lg-thinq](https://github.com/zimmra/frida-rootbypass-and-sslunpinning-lg-thinq) (Method tested August '23, LG ThinQ Version 4.1.46041)
 
-## Be kind
-
-If you like the component, why don't you support me by buying me a coffee?
-It would certainly motivate me to further improve this work.
-
-[![Buy me a coffee!](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://www.buymeacoffee.com/ollo69)
-
 Credits
 
 -------
 
-This component is developed by [Ollo69][ollo69] based on [WideQ API][wideq].
+This component is maintained by [enter360][enter360], forked from the original work by [Ollo69][ollo69].
+Original integration developed by [Ollo69][ollo69] based on [WideQ API][wideq].
 Original WideQ API was developed by [Adrian Sampson][adrian] under license [MIT][].
 
+[enter360]: https://github.com/enter360
 [ollo69]: https://github.com/ollo69
 [wideq]: https://github.com/sampsyo/wideq
 [adrian]: https://github.com/sampsyo
