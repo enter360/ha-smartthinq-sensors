@@ -451,7 +451,7 @@ class TestWMStatusEnergyProperties:
         status = self._make_status(energy_today=400)
         with patch.object(status, "_update_feature", return_value=400) as mock_uf:
             result = status.energy_today
-        mock_uf.assert_called_once_with(WashDeviceFeatures.ENERGY_TODAY, 400, False)
+        mock_uf.assert_called_once_with(WashDeviceFeatures.ENERGY_TODAY, 400, False, allow_none=True)
         assert result == 400
 
     def test_energy_today_returns_none_when_not_available(self):
@@ -479,16 +479,16 @@ class TestWMStatusEnergyProperties:
         status = self._make_status(energy_last_cycle=None)
         assert status.energy_last_cycle is None
 
-    def test_energy_feature_helper_skips_none(self):
+    def test_energy_feature_helper_registers_feature_when_none(self):
         status = self._make_status()
-        with patch.object(status, "_update_feature") as mock_uf:
+        with patch.object(status, "_update_feature", return_value=None) as mock_uf:
             result = status._energy_feature(WashDeviceFeatures.ENERGY_TODAY, None)
-        mock_uf.assert_not_called()
+        mock_uf.assert_called_once_with(WashDeviceFeatures.ENERGY_TODAY, None, False, allow_none=True)
         assert result is None
 
     def test_energy_feature_helper_calls_update_feature(self):
         status = self._make_status()
         with patch.object(status, "_update_feature", return_value=100) as mock_uf:
             result = status._energy_feature(WashDeviceFeatures.ENERGY_TODAY, 100)
-        mock_uf.assert_called_once_with(WashDeviceFeatures.ENERGY_TODAY, 100, False)
+        mock_uf.assert_called_once_with(WashDeviceFeatures.ENERGY_TODAY, 100, False, allow_none=True)
         assert result == 100

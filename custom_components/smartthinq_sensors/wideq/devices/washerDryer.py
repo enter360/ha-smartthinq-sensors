@@ -1313,9 +1313,7 @@ class WMStatus(DeviceStatus):
 
     def _energy_feature(self, feature: WashDeviceFeatures, value) -> int | None:
         """Return an energy feature value, updating the feature map."""
-        if value is None:
-            return None
-        return self._update_feature(feature, value, False)
+        return self._update_feature(feature, value, False, allow_none=True)
 
     @property
     def energy_today(self):
