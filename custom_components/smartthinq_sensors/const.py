@@ -34,6 +34,7 @@ ATTR_OVEN_TEMP_UNIT = "oven_temp_unit"
 # configuration
 CONF_LANGUAGE = "language"
 CONF_OAUTH2_URL = "oauth2_url"
+CONF_PAT = "pat"
 CONF_USE_API_V2 = "use_api_v2"
 CONF_USE_HA_SESSION = "use_ha_session"
 CONF_USE_REDIRECT = "use_redirect"
