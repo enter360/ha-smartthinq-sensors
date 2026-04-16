@@ -1,6 +1,6 @@
 ---
 name: hacs-release
-description: Cut a new HACS-compatible release for ha-smartthinq-sensors. Bumps version in const.py and manifest.json, opens a PR to master, merges it, creates a GitHub release, builds and uploads smartthinq_sensors.zip as a release asset.
+description: Cut a new HACS-compatible release for ha-smartthinq-sensors. Bumps version in const.py and manifest.json, opens a PR to main, merges it, creates a GitHub release, builds and uploads smartthinq_sensors.zip as a release asset.
 user-invocable: true
 argument-hint: <new-version>  (e.g. 1.2.0)
 allowed-tools: Bash Read Edit Glob Grep
@@ -17,7 +17,7 @@ Follow every step in order. Do not skip any. Confirm success before moving to th
 ### 1 — Validate input
 
 - The argument must be a semver string (`MAJOR.MINOR.PATCH`). If it is missing or malformed, stop and ask the user.
-- Run `git status` and confirm the working tree is clean and we are on `master` (or pull first if behind).
+- Run `git status` and confirm the working tree is clean and we are on `main` (or pull first if behind).
 
 ### 2 — Bump version
 
@@ -35,13 +35,13 @@ git commit -m "chore: bump version to {version}"
 git push -u origin chore/bump-version-{version}
 ```
 
-Open a PR targeting `master` via the GitHub REST API:
+Open a PR targeting `main` via the GitHub REST API:
 
 ```
 gh api repos/enter360/ha-smartthinq-sensors/pulls \
   --method POST \
   --field title="chore: bump version to {version}" \
-  --field base="master" \
+  --field base="main" \
   --field head="chore/bump-version-{version}" \
   --field body="Version bump to {version} in preparation for HACS release." \
   --jq '.number'
@@ -49,7 +49,7 @@ gh api repos/enter360/ha-smartthinq-sensors/pulls \
 
 Print the PR URL for the user.
 
-### 4 — Merge the PR into master
+### 4 — Merge the PR into main
 
 Wait for the user to confirm the PR looks correct, then merge:
 
@@ -60,10 +60,10 @@ gh api repos/enter360/ha-smartthinq-sensors/pulls/{pr_number}/merge \
   --field commit_title="chore: bump version to {version}"
 ```
 
-Switch back to master and pull:
+Switch back to main and pull:
 
 ```
-git checkout master && git pull
+git checkout main && git pull
 ```
 
 ### 5 — Create GitHub release
@@ -73,7 +73,7 @@ gh api repos/enter360/ha-smartthinq-sensors/releases \
   --method POST \
   --field tag_name="v{version}" \
   --field name="v{version}" \
-  --field target_commitish="master" \
+  --field target_commitish="main" \
   --field body="## v{version}\n\n<!-- Add release notes here -->" \
   --jq '.id'
 ```
@@ -122,7 +122,7 @@ The HACS badge in the README will update automatically once the release tag is l
 
 ## Notes
 
-- **Always merge the PR before creating the release.** Tag against `master`, not the bump branch.
+- **Always merge the PR before creating the release.** Tag against `main`, not the bump branch.
 - The zip must contain `smartthinq_sensors/` at the root (not `custom_components/smartthinq_sensors/`). HACS installs it directly into `custom_components/`.
 - The asset upload endpoint is `uploads.github.com`, not `api.github.com`. Using `gh api` for the upload will return 404.
 - `gh release create` may fail with a spurious "workflow scope" error even after re-auth. Use `gh api repos/.../releases` (POST) instead.
