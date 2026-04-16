@@ -30,7 +30,6 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .const import (
     CLIENT,
     CONF_PAT,
-    CONF_TOKEN,  # kept for legacy detection only
     DOMAIN,
     LGE_DEVICES,
     LGE_DISCOVERY_NEW,
