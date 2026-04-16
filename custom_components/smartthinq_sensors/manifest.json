@@ -14,5 +14,5 @@
     "charset_normalizer>=3.2.0",
     "thinqconnect>=0.9.5"
   ],
-  "version": "1.1.1"
+  "version": "1.1.2"
 }

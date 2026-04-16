@@ -1,60 +1,37 @@
 {
   "config": {
-    "abort": {
-      "single_instance_allowed": "Only a single configuration of SmartThinQ LGE Sensors is allowed.",
-      "no_smartthinq_devices": "No SmartThinQ devices found. Component setup aborted.",
-      "unsupported_version": "This integration require at least HomeAssistant version {req_ver}, you are running version {run_ver}.",
-      "reauth_successful": "Configuration successfully completed.",
-      "reconfigured": "Configuration successfully completed."
-    },
-    "error": {
-      "error_connect": "Error connecting to SmartThinQ. Try again, and make sure you can access the ThinQ app on your phone.",
-      "error_url": "Error retrieving login URL from ThinQ.",
-      "invalid_region": "Invalid region format.",
-      "invalid_language": "Invalid language format.",
-      "invalid_url": "Invalid redirection URL. Make sure you can access the ThinQ app on your phone.",
-      "invalid_credentials": "Invalid SmartThinQ credentials. Use the LG App on your mobile device to verify if there are Term of Service to accept. Account based on social network are not supported and in most case do not work with this integration.",
-      "invalid_config": "Found invalid configuration, please reconfigure.",
-      "no_user_info": "User Name and Password are required.",
-      "unknown": "Unknown error."
-    },
     "step": {
       "user": {
+        "title": "Connect to LG ThinQ",
+        "description": "Enter your LG ThinQ Personal Access Token (PAT). You can generate one at https://connect-client.developer.lge.com/ under \"My Apps\" → \"PAT\".",
         "data": {
-          "username": "LG account user name",
-          "password": "Password",
-          "region": "Country Code",
-          "language": "Language Code",
-          "use_redirect": "Use URL redirect authentication method",
-          "use_ha_session": "Share Home Assistant HTTP connection (may cause SSL errors)",
-          "use_tls_v1": "Force use of protocol TLSv1 (sometimes required)",
-          "exclude_dh": "Do not use DH cypher (in case 'dh key too small' error)"
+          "pat": "Personal Access Token (PAT)",
+          "region": "Country / Region"
         },
-        "description": "Insert your SmartThinQ account access information."
-      },
-      "url": {
-        "data": {
-          "login_url": "SmartThinQ login URL",
-          "callback_url": "Redirection URL"
-        },
-        "description": "Use the URL in the first field to perform login to SmartThinQ with your credentials, then paste the URL where the browser is redirected after the login in the second field. Share feedback about your setup [here](https://git.io/JU166).",
-        "title": "SmartThinQ LGE Sensors - Authentication"
-      },
-      "token": {
-        "data": {
-          "token": "Refresh Token"
-        },
-        "description": "Save the generated token for future use, then confirm to complete the configuration.",
-        "title": "SmartThinQ LGE Sensors - New refresh token"
+        "data_description": {
+          "pat": "The PAT issued from the LG ThinQ developer portal. Keep it secret.",
+          "region": "The country where your LG account is registered."
+        }
       },
       "reauth_confirm": {
+        "title": "Re-authenticate with LG ThinQ",
+        "description": "Your Personal Access Token has expired or been revoked. Please enter a new PAT.",
         "data": {
-          "reauth_cred": "Check this option if you need to enter new ThinQ credential"
-        },
-        "title": "SmartThinQ LGE Sensors - Reauth",
-        "description": "Invalid ThinQ credential error, integration setup aborted. Please use the LG App on your mobile device and check if there are new Term of Service to accept, then press ok to reload integration."
+          "pat": "Personal Access Token (PAT)"
+        }
       }
     },
-    "title": "SmartThinQ LGE Sensors"
+    "error": {
+      "cannot_connect": "Failed to connect to LG ThinQ. Check your internet connection and try again.",
+      "invalid_pat": "The Personal Access Token was rejected. Verify the token is correct and has not expired.",
+      "no_devices": "Authentication succeeded but no ThinQ devices were found on this account.",
+      "unknown": "An unexpected error occurred. Check the Home Assistant logs for details."
+    },
+    "abort": {
+      "already_configured": "This LG ThinQ account is already configured.",
+      "no_smartthinq_devices": "No supported LG ThinQ devices were found.",
+      "reauth_successful": "Re-authentication was successful.",
+      "unsupported_version": "This integration requires Home Assistant {req_ver} or newer. You are running {run_ver}."
+    }
   }
 }
